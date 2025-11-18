@@ -1,0 +1,52 @@
+name: Build All Ruby Images
+run-name: Build all ruby images
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Target platforms'
+        type: string
+        required: true
+        default: 'linux/amd64,linux/arm64'
+
+jobs:
+  build-ruby-27:
+    uses: ./.github/workflows/build-ruby.yaml
+    with:
+      tag: '2.7'
+      dockerfile: './images/ruby27/Dockerfile'
+      platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64' }}
+    secrets: inherit
+
+  build-ruby-31:
+    uses: ./.github/workflows/build-ruby.yaml
+    with:
+      tag: '3.1'
+      dockerfile: './images/ruby31/Dockerfile'
+      platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64' }}
+    secrets: inherit
+
+  build-ruby-32:
+    uses: ./.github/workflows/build-ruby.yaml
+    with:
+      tag: '3.2'
+      dockerfile: './images/ruby32/Dockerfile'
+      platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64' }}
+    secrets: inherit
+
+  build-ruby-33:
+    uses: ./.github/workflows/build-ruby.yaml
+    with:
+      tag: '3.3'
+      dockerfile: './images/ruby33/Dockerfile'
+      platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64' }}
+    secrets: inherit
+
+  build-ruby-34:
+    uses: ./.github/workflows/build-ruby.yaml
+    with:
+      tag: '3.4'
+      dockerfile: './images/ruby34/Dockerfile'
+      platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64' }}
+    secrets: inherit
